@@ -126,9 +126,6 @@ function App() {
 
   return (
     <>
-      <div style={{ position: 'fixed', top: 0, right: 0, background: '#000', color: '#0f0', padding: '4px 8px', fontSize: 11, zIndex: 9999, fontFamily: 'monospace' }}>
-        phase={phase} | round={roundIndex + 1}/{EXAM_ROUNDS.length} | q={questions.length}
-      </div>
       {phase === 'active' && (
         <ExamPage
           subjectLabel={SUBJECT_INFO_MAP[currentSubject].label}
