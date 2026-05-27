@@ -3,13 +3,12 @@ import styles from './HomePage.module.css';
 
 interface Props {
   startExam: () => void;
-  onLearn: () => void;
   onKnowledge: () => void;
   onPractice: () => void;
   onHistory: () => void;
 }
 
-export function HomePage({ startExam, onLearn, onKnowledge, onPractice, onHistory }: Props) {
+export function HomePage({ startExam, onKnowledge, onPractice, onHistory }: Props) {
   return (
     <div className="app-container">
       <div className={styles.hero}>
@@ -77,9 +76,6 @@ export function HomePage({ startExam, onLearn, onKnowledge, onPractice, onHistor
         </button>
         <button className={styles.secondaryBtn} onClick={onPractice}>
           🎯 AI 实践任务
-        </button>
-        <button className={styles.secondaryBtn} onClick={onLearn}>
-          💡 基础概念学习
         </button>
         <button className={styles.secondaryBtn} onClick={onHistory}>
           📋 考试记录

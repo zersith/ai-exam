@@ -7,7 +7,6 @@ import { questionBank } from './data/questions';
 import { HomePage } from './routes/HomePage';
 import { ExamPage } from './routes/ExamPage';
 import { ResultPage } from './routes/ResultPage';
-import { LearningPage } from './routes/LearningPage';
 import { KnowledgePage } from './routes/KnowledgePage';
 import { PracticePage } from './routes/PracticePage';
 import { HistoryPage } from './routes/HistoryPage';
@@ -174,14 +173,10 @@ function App() {
             setRoundIndex(0);
             startExam(EXAM_ROUNDS[0]);
           }}
-          onLearn={() => setPhase('learning')}
           onKnowledge={() => setPhase('knowledge')}
           onPractice={() => setPhase('practice')}
           onHistory={() => setPhase('history')}
         />
-      )}
-      {phase === 'learning' && (
-        <LearningPage onBack={() => setPhase('idle')} />
       )}
       {phase === 'knowledge' && (
         <KnowledgePage onBack={() => setPhase('idle')} />
