@@ -1,0 +1,250 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.headerTitle {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.headerSub {
+  color: var(--text-secondary);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.backBtn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.backBtn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.statCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+}
+
+.statIcon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.statValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.statLabel {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.subjectBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.subjectBar:last-child {
+  margin-bottom: 0;
+}
+
+.subjectLabel {
+  width: 90px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.subjectTrack {
+  flex: 1;
+  height: 22px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.subjectFill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  min-width: 36px;
+}
+
+.performerTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.performerTable th {
+  text-align: left;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 11px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.performerTable td {
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.rankBadge {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.rankGold { background: #fef3c7; color: #b45309; }
+.rankSilver { background: #f1f5f9; color: #475569; }
+.rankBronze { background: #ffedd5; color: #c2410c; }
+
+.examTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.examTable th {
+  text-align: left;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 11px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.examTable td {
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.scoreBar {
+  display: inline-block;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--primary);
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.activityItem {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 13px;
+  align-items: center;
+}
+
+.activityDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.activityDotExam { background: var(--primary); }
+.activityDotPractice { background: #059669; }
+
+.activityDesc {
+  flex: 1;
+  color: var(--text);
+}
+
+.activityTime {
+  color: var(--text-secondary);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-secondary);
+}
+
+.loading {
+  text-align: center;
+  padding: 60px;
+  color: var(--text-secondary);
+}
+
+.errorBox {
+  text-align: center;
+  padding: 60px;
+  color: var(--danger);
+}
+
+@media (max-width: 768px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .twoCol {
+    grid-template-columns: 1fr;
+  }
+}

@@ -89,9 +89,15 @@ export function ExamPage({
             <button className={styles.navBtn} onClick={goPrev} disabled={currentIndex === 0}>
               上一题
             </button>
-            <button className={styles.navBtn} onClick={goNext} disabled={currentIndex === questions.length - 1}>
-              下一题
-            </button>
+            {currentIndex < questions.length - 1 ? (
+              <button className={styles.navBtn} onClick={goNext}>
+                下一题
+              </button>
+            ) : (
+              <button className={styles.submitNavBtn} onClick={handleSubmit}>
+                交卷
+              </button>
+            )}
           </div>
         </main>
 

@@ -100,6 +100,22 @@
   cursor: not-allowed;
 }
 
+.submitNavBtn {
+  flex: 1;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.submitNavBtn:hover {
+  background: var(--primary-dark);
+}
+
 .sidebar {
   width: 160px;
   flex-shrink: 0;

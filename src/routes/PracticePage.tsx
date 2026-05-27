@@ -305,12 +305,21 @@ const DIFFICULTY_COLORS: Record<string, string> = {
   '挑战': '#d97706',
 };
 
-export function PracticePage({ onBack }: { onBack: () => void }) {
+interface PracticePageProps {
+  onBack: () => void;
+  onPracticeToggle?: (taskIndex: number, taskTitle: string, category: string, completed: boolean) => void;
+}
+
+export function PracticePage({ onBack, onPracticeToggle }: PracticePageProps) {
   const [doneMap, setDoneMap] = useState<Record<number, boolean>>({});
   const [expandedGuide, setExpandedGuide] = useState<number | null>(null);
 
   const toggleDone = (idx: number) => {
-    setDoneMap(prev => ({ ...prev, [idx]: !prev[idx] }));
+    setDoneMap(prev => {
+      const next = !prev[idx];
+      onPracticeToggle?.(idx, taskPool[idx].title, taskPool[idx].category, next);
+      return { ...prev, [idx]: next };
+    });
   };
 
   const toggleGuide = (idx: number) => {

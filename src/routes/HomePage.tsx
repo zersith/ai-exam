@@ -6,9 +6,10 @@ interface Props {
   onKnowledge: () => void;
   onPractice: () => void;
   onHistory: () => void;
+  onDashboard: () => void;
 }
 
-export function HomePage({ startExam, onKnowledge, onPractice, onHistory }: Props) {
+export function HomePage({ startExam, onKnowledge, onPractice, onHistory, onDashboard }: Props) {
   return (
     <div className="app-container">
       <div className={styles.hero}>
@@ -79,6 +80,9 @@ export function HomePage({ startExam, onKnowledge, onPractice, onHistory }: Prop
         </button>
         <button className={styles.secondaryBtn} onClick={onHistory}>
           📋 考试记录
+        </button>
+        <button className={styles.secondaryBtn} onClick={onDashboard}>
+          📊 数据看板
         </button>
       </div>
     </div>
