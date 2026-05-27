@@ -1,0 +1,81 @@
+.sidebar {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.heading {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.dot {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.dot:hover {
+  border-color: var(--primary);
+}
+
+.answered {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.current {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-light);
+  font-weight: 700;
+}
+
+.legend {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.legendDot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  margin-right: 2px;
+  vertical-align: -1px;
+}
+
+.answered.legendDot {
+  background: var(--primary-light);
+  border-color: var(--primary);
+}
+
+.current.legendDot {
+  box-shadow: 0 0 0 2px var(--primary-light);
+}

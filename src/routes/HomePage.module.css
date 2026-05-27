@@ -1,0 +1,171 @@
+.hero {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+/* Round list */
+.rounds {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.roundItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.roundBadge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.roundBody {
+  flex: 1;
+}
+
+.roundHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.roundIcon {
+  font-size: 16px;
+}
+
+.roundLabel {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.roundMeta {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-left: auto;
+}
+
+.roundDesc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Rules */
+.rules {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ruleItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.ruleItem:last-child {
+  border-bottom: none;
+}
+
+.ruleLabel {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.ruleValue {
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.startBtn {
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 14px;
+  border-radius: var(--radius);
+  margin-top: 4px;
+  box-shadow: var(--shadow-md);
+}
+
+.startBtn:hover {
+  background: var(--primary-dark);
+}
+
+.secondaryBtns {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.secondaryBtn {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 8px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.secondaryBtn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}

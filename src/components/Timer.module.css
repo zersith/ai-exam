@@ -1,0 +1,17 @@
+.timer {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.warn {
+  color: var(--danger);
+  font-weight: 600;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
