@@ -1,5 +1,4 @@
-import { useState, useCallback } from 'react';
-import { shuffle } from '../utils/shuffle';
+import { useState } from 'react';
 import styles from './PracticePage.module.css';
 
 interface PracticeTask {
@@ -284,15 +283,8 @@ const DIFFICULTY_COLORS: Record<string, string> = {
 };
 
 export function PracticePage({ onBack }: { onBack: () => void }) {
-  const [tasks, setTasks] = useState(() => shuffle([...taskPool]).slice(0, 5));
   const [doneMap, setDoneMap] = useState<Record<number, boolean>>({});
   const [expandedGuide, setExpandedGuide] = useState<number | null>(null);
-
-  const refresh = useCallback(() => {
-    setTasks(shuffle([...taskPool]).slice(0, 5));
-    setDoneMap({});
-    setExpandedGuide(null);
-  }, []);
 
   const toggleDone = (idx: number) => {
     setDoneMap(prev => ({ ...prev, [idx]: !prev[idx] }));
@@ -308,13 +300,10 @@ export function PracticePage({ onBack }: { onBack: () => void }) {
         <div>
           <h1 style={{ fontSize: 22, fontWeight: 700 }}>AI 实践任务</h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: 13, marginTop: 4 }}>
-            随机推荐 5 个实践任务，点击展开查看详细执行指南
+            共 {taskPool.length} 个实践任务，点击展开查看详细执行指南
           </p>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={refresh} className={styles.refreshBtn}>
-            换一批
-          </button>
           <button onClick={onBack} className={styles.backBtn}>
             返回首页
           </button>
@@ -322,7 +311,7 @@ export function PracticePage({ onBack }: { onBack: () => void }) {
       </div>
 
       <div className={styles.taskList}>
-        {tasks.map((task, i) => {
+        {taskPool.map((task, i) => {
           const done = doneMap[i];
           const guideOpen = expandedGuide === i;
           return (
@@ -374,7 +363,7 @@ export function PracticePage({ onBack }: { onBack: () => void }) {
       </div>
 
       <div className={styles.stats}>
-        共 {taskPool.length} 个实践任务 | 已完成 {Object.values(doneMap).filter(Boolean).length} / 5
+        共 {taskPool.length} 个实践任务 | 已完成 {Object.values(doneMap).filter(Boolean).length} / {taskPool.length}
       </div>
     </div>
   );
