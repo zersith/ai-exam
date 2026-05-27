@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import type { Phase, ExamConfig, Question, ExamResult, ExamSubject, RoundResult } from './types';
 import { SUBJECT_INFO_MAP, EXAM_ROUNDS } from './types';
 import { shuffle } from './utils/shuffle';
@@ -10,9 +10,6 @@ import { ResultPage } from './routes/ResultPage';
 import { KnowledgePage } from './routes/KnowledgePage';
 import { PracticePage } from './routes/PracticePage';
 import { HistoryPage } from './routes/HistoryPage';
-import { NameInput } from './components/NameInput';
-import * as tracking from './api/tracking';
-import type { UserInfo } from './api/auth';
 import './App.css';
 
 function pickQuestions(bank: Question[], subject: ExamSubject, count: number): Question[] {
@@ -31,24 +28,8 @@ function App() {
   const [remainingTime, setRemainingTime] = useState(720);
   const [allResults, setAllResults] = useState<RoundResult[]>([]);
 
-  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
-  const prevPhaseRef = useRef<Phase>('idle');
-
   const currentSubject = EXAM_ROUNDS[roundIndex];
   const isLastRound = roundIndex >= EXAM_ROUNDS.length - 1;
-
-  // Track page visits on phase change
-  useEffect(() => {
-    if (userInfo && phase !== prevPhaseRef.current) {
-      prevPhaseRef.current = phase;
-      const pageMap: Record<string, string> = { idle: 'home', active: 'exam', submitted: 'result', finished: 'result', knowledge: 'knowledge', practice: 'practice', history: 'history' };
-      tracking.trackPageVisit(userInfo.userId, pageMap[phase] || phase);
-    }
-  }, [phase, userInfo]);
-
-  const handleLogin = useCallback((info: UserInfo) => {
-    setUserInfo(info);
-  }, []);
 
   const startExam = useCallback((subject: ExamSubject) => {
     const info = SUBJECT_INFO_MAP[subject];
@@ -120,17 +101,15 @@ function App() {
     }
   }, [remainingTime, phase, currentSubject, questions, answers]);
 
-  // Save history & track exam result when all rounds are done
+  // Save history when all rounds are done
   useEffect(() => {
     if (phase !== 'finished' || allResults.length === 0) return;
-    const totalScore = allResults.reduce((s, r) => s + r.result.correctCount, 0);
-    const maxScore = allResults.reduce((s, r) => s + r.result.maxScore, 0);
     const entry = {
       id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
       timestamp: Date.now(),
       allResults,
-      totalScore,
-      maxScore,
+      totalScore: allResults.reduce((s, r) => s + r.result.correctCount, 0),
+      maxScore: allResults.reduce((s, r) => s + r.result.maxScore, 0),
     };
     try {
       const raw = localStorage.getItem('ai-exam-history');
@@ -138,27 +117,11 @@ function App() {
       existing.unshift(entry);
       localStorage.setItem('ai-exam-history', JSON.stringify(existing.slice(0, 20)));
     } catch { /* ignore */ }
-
-    // Track to server
-    if (userInfo) {
-      tracking.trackExamResult(userInfo.userId, allResults, totalScore, maxScore);
-    }
-  }, [phase, allResults, userInfo]);
-
-  const handlePracticeToggle = useCallback((taskIndex: number, taskTitle: string, category: string, completed: boolean) => {
-    if (userInfo) {
-      tracking.trackPractice(userInfo.userId, taskIndex, taskTitle, category, completed);
-    }
-  }, [userInfo]);
+  }, [phase, allResults]);
 
   const currentQuestion = questions[currentIndex] ?? null;
   const answeredCount = Object.keys(answers).length;
   const progress = questions.length > 0 ? answeredCount / questions.length : 0;
-
-  // Show name input first
-  if (!userInfo) {
-    return <NameInput onLogin={handleLogin} />;
-  }
 
   return (
     <>
@@ -219,7 +182,7 @@ function App() {
         <KnowledgePage onBack={() => setPhase('idle')} />
       )}
       {phase === 'practice' && (
-        <PracticePage onBack={() => setPhase('idle')} onPracticeToggle={handlePracticeToggle} />
+        <PracticePage onBack={() => setPhase('idle')} />
       )}
       {phase === 'history' && (
         <HistoryPage onBack={() => setPhase('idle')} />
