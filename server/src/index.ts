@@ -1,5 +1,6 @@
 import express from 'express';
 import routes from './routes.js';
+import { getDashboardHTML } from './dashboard-page.js';
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3001;
 
@@ -20,6 +21,11 @@ app.use((_req, res, next) => {
 });
 
 app.use('/api', routes);
+
+// Protected dashboard — only for zersith
+app.get('/dashboard', (_req, res) => {
+  res.type('html').send(getDashboardHTML());
+});
 
 app.listen(PORT, () => {
   console.log(`ai-exam server running on http://localhost:${PORT}`);

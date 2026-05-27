@@ -10,7 +10,6 @@ import { ResultPage } from './routes/ResultPage';
 import { KnowledgePage } from './routes/KnowledgePage';
 import { PracticePage } from './routes/PracticePage';
 import { HistoryPage } from './routes/HistoryPage';
-import { DashboardPage } from './routes/DashboardPage';
 import { NameInput } from './components/NameInput';
 import * as tracking from './api/tracking';
 import type { UserInfo } from './api/auth';
@@ -42,7 +41,7 @@ function App() {
   useEffect(() => {
     if (userInfo && phase !== prevPhaseRef.current) {
       prevPhaseRef.current = phase;
-      const pageMap: Record<string, string> = { idle: 'home', active: 'exam', submitted: 'result', finished: 'result', knowledge: 'knowledge', practice: 'practice', history: 'history', dashboard: 'dashboard' };
+      const pageMap: Record<string, string> = { idle: 'home', active: 'exam', submitted: 'result', finished: 'result', knowledge: 'knowledge', practice: 'practice', history: 'history' };
       tracking.trackPageVisit(userInfo.userId, pageMap[phase] || phase);
     }
   }, [phase, userInfo]);
@@ -214,7 +213,6 @@ function App() {
           onKnowledge={() => setPhase('knowledge')}
           onPractice={() => setPhase('practice')}
           onHistory={() => setPhase('history')}
-          onDashboard={() => setPhase('dashboard')}
         />
       )}
       {phase === 'knowledge' && (
@@ -225,9 +223,6 @@ function App() {
       )}
       {phase === 'history' && (
         <HistoryPage onBack={() => setPhase('idle')} />
-      )}
-      {phase === 'dashboard' && (
-        <DashboardPage onBack={() => setPhase('idle')} />
       )}
     </>
   );

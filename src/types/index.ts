@@ -44,7 +44,7 @@ export interface AnswerRecord {
   isCorrect: boolean;
 }
 
-export type Phase = 'idle' | 'active' | 'submitted' | 'finished' | 'knowledge' | 'practice' | 'history' | 'dashboard';
+export type Phase = 'idle' | 'active' | 'submitted' | 'finished' | 'knowledge' | 'practice' | 'history';
 
 export interface ExamConfig {
   subject: ExamSubject;
